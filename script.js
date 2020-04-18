@@ -15,23 +15,27 @@ const depositBtn = document.querySelector("#addDeposit");
 
 depositBtn.addEventListener("click",function(){
     const depositAmount = document.querySelector("#depositAmount").value;
-    const depositNumber = parseFloat(depositAmount);
+
+    if(depositAmount < 0){
+        alert("Deposit amount cannot be negative");
+    }
+    else{
+        const depositNumber = parseFloat(depositAmount);
     
-    // const currentAmount = document.querySelector("#currentAmount").innerText;
-
-    // const currentAmountNumber = parseFloat(currentAmount);
-
-    // const totalAmount = depositNumber + currentAmountNumber;
-
-    // document.querySelector("#currentAmount").innerText = totalAmount;
-
-    updateSpanText("#currentAmount",depositNumber);
-
-    updateSpanText("#currentBalance",depositNumber);
-
-    document.querySelector("#depositAmount").value = "";
-
-
+        // const currentAmount = document.querySelector("#currentAmount").innerText;
+    
+        // const currentAmountNumber = parseFloat(currentAmount);
+    
+        // const totalAmount = depositNumber + currentAmountNumber;
+    
+        // document.querySelector("#currentAmount").innerText = totalAmount;
+    
+        updateSpanText("#currentAmount",depositNumber);
+    
+        updateSpanText("#currentBalance",depositNumber);
+    
+        document.querySelector("#depositAmount").value = "";
+    }
 });
 
 function updateSpanText(id,depositNumber){
@@ -48,21 +52,24 @@ const withdrawBtn = document.querySelector("#addWithdraw");
 
 withdrawBtn.addEventListener("click",function(){
     const addWithdrawAmount = document.querySelector("#addWithdrawAmount").value;
-    const addWithdrawAmountNumber = parseFloat(addWithdrawAmount);
 
-    const withdrawAmount = document.querySelector(".withdrawAmount").innerText;
-    const withdrawAmountNumber = parseFloat(withdrawAmount);
+    if(addWithdrawAmount < 0){
+        alert("Withdraw amount cannot be negative");
+    }
+    else{
+        const addWithdrawAmountNumber = parseFloat(addWithdrawAmount);
 
-    const totalWithdrawAmount = addWithdrawAmountNumber + withdrawAmountNumber;
+        const withdrawAmount = document.querySelector(".withdrawAmount").innerText;
+        const withdrawAmountNumber = parseFloat(withdrawAmount);
 
-    document.querySelector(".withdrawAmount").innerText = totalWithdrawAmount;
+        const totalWithdrawAmount = addWithdrawAmountNumber + withdrawAmountNumber;
 
-    updateWithdrawSpanText("#currentBalance",addWithdrawAmountNumber)
+        document.querySelector(".withdrawAmount").innerText = totalWithdrawAmount;
 
-    document.querySelector("#addWithdrawAmount").value = "";
+        updateWithdrawSpanText("#currentBalance",addWithdrawAmountNumber)
 
-
-
+        document.querySelector("#addWithdrawAmount").value = "";
+}
 });
 
 function updateWithdrawSpanText(id,addWithdrawAmountNumber){
